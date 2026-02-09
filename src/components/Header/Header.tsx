@@ -1,11 +1,14 @@
+import { Link } from '@tanstack/react-router'
+import { ROUTES } from '@/configs/routesConfig'
+
 const Header: React.FC = () => {
   return (
     <header className="bg-red-400 text-white shadow-md">
       <div className="container mx-auto flex items-center justify-between py-4 px-6">
 
-        <a className="text-2xl font-bold hover:text-red-200 transition-colors cursor-pointer">
+        <Link to={ROUTES.HOME} className="text-2xl font-bold hover:text-red-200 transition-colors cursor-pointer">
           PostsApp
-        </a>
+        </Link>
 
         <input
           name="search"

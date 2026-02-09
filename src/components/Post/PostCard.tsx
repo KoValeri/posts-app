@@ -1,8 +1,10 @@
 import type { Post } from '@/types'
+import { Link } from '@tanstack/react-router'
+import { ROUTES } from '@/configs/routesConfig'
 
-const PostCard: React.FC<Post> = ({ title, body, tags, reactions, views }) => {
+const PostCard: React.FC<Post> = ({ id, title, body, tags, reactions, views }) => {
   return (
-    <div className="p-5">
+    <Link className="p-5" to={ROUTES.POST} params={{ id }}>
       <div className="p-5 border rounded-lg shadow-sm bg-white space-y-3 hover:bg-gray-50 transition-colors cursor-pointer">
         
         <h2 className="text-lg font-bold">{title}</h2>
@@ -37,7 +39,7 @@ const PostCard: React.FC<Post> = ({ title, body, tags, reactions, views }) => {
         </div>
 
       </div>
-    </div>
+    </Link>
   )
 }
 

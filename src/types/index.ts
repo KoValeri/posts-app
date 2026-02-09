@@ -13,6 +13,21 @@ export interface Post {
   views: number
 }
 
+export interface User {
+  id: number
+  username: string
+  fullName: string
+}
+
+export interface Comment {
+  id: number
+  body: string
+  postID: number
+  userId: number
+  likes: number
+  user: User
+}
+
 export interface PostsParams {
   limit?: number
   skip?: number
@@ -20,6 +35,13 @@ export interface PostsParams {
 
 export interface PostsResponse {
   posts: Post[]
+  total: number
+  skip: number
+  limit: number
+}
+
+export interface CommentsResponse {
+  comments: Comment[]
   total: number
   skip: number
   limit: number

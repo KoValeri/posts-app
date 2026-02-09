@@ -1,5 +1,5 @@
 import axios from 'axios'
-import type { Post, PostsParams, PostsResponse } from '@/types'
+import type { Post, PostsParams, PostsResponse, CommentsResponse } from '@/types'
 
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
@@ -13,5 +13,10 @@ export const getPosts = async ({ limit = 10, skip = 0 }: PostsParams): Promise<P
 
 export const getPostById = async (id: number): Promise<Post> => {
   const response = await api.get<Post>(`/posts/${id}`)
+  return response.data
+}
+
+export const getCommentsByPostId = async (postId: number): Promise<CommentsResponse> => {
+  const response = await api.get<CommentsResponse>(`/comments/post/${postId}`)
   return response.data
 }
