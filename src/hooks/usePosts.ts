@@ -2,9 +2,11 @@ import { useQuery } from '@tanstack/react-query'
 import { getPosts } from '@/api/posts'
 import type { PostsResponse } from '@/types'
 
-export const usePosts = () => {
+export const usePosts = ( page: number, limit = 10 ) => {
+  const skip = (page - 1) * limit
+
   return useQuery<PostsResponse>({
-    queryKey: ['posts'],
-    queryFn: () => getPosts({ limit: 10 }),
+    queryKey: ['posts', page, limit],
+    queryFn: () => getPosts({ limit, skip }),
   })
 }
