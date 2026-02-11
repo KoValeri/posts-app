@@ -32,7 +32,7 @@ const PostsList: React.FC = () => {
 
     return (
       <div className="p-5">
-        <div className='space-y-4 p-4'>
+        <div>
           {data?.posts.map(post => (
             <PostCard 
             key={post.id}

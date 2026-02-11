@@ -1,8 +1,8 @@
 import { createRouter, createRootRoute, createRoute } from '@tanstack/react-router'
 import { ROUTES } from '@/configs/routesConfig'
 import App from '@/App'
-import HomePage from '@/pages/HomePage'
-import PostDetailsPage from '@/pages/PostDetailsPage'
+import HomePage from '@/pages/Home/HomePage'
+import PostDetailsPage from '@/pages/PostDetails/PostDetailsPage'
 
 const rootRoute = createRootRoute({
   component: App,
