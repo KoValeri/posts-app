@@ -1,4 +1,4 @@
-import type { Post } from '@/types'
+import type { Post } from '@/types/posts.types'
 import { Link } from '@tanstack/react-router'
 import { ROUTES } from '@/configs/routesConfig'
 

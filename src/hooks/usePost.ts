@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { getPostById } from '@/api/posts'
-import type { Post } from '@/types'
+import type { Post } from '@/types/posts.types'
 
 export const usePost = (id: number) => {
   return useQuery<Post>({
