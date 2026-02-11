@@ -1,5 +1,6 @@
 import axios from 'axios'
-import type { Post, PostsParams, PostsResponse, CommentsResponse } from '@/types'
+import type { Post, PostsParams, PostsResponse } from '@/types/posts.types'
+import type { CommentsResponse } from '@/types/comments.types'
 
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,

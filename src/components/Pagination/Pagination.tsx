@@ -1,4 +1,4 @@
-import { getPaginationRange } from '@/utils/getPaginationRange'
+import { getPaginationRange } from '@/components/Pagination/getPaginationRange'
 import type { PaginationProps } from '@/types'
 
 const Pagination: React.FC<PaginationProps> = ({currentPage, totalPages, onPageChange}) => {

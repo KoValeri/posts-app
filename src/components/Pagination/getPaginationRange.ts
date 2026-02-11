@@ -1,4 +1,4 @@
-import type { PaginationItem, PaginationRangeParams } from '@/types'
+import type { PaginationItem, PaginationRangeParams } from '@/types/pagination.types'
 
 export function getPaginationRange({
   currentPage,
