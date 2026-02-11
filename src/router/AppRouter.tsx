@@ -1,13 +1,36 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { RouterProvider } from '@tanstack/react-router'
-import { router } from './router'
+import { createRouter, createRootRoute, createRoute } from '@tanstack/react-router'
+import { ROUTES } from '@/configs/routesConfig'
+import App from '@/App'
+import HomePage from '@/pages/Home/HomePage'
+import PostDetailsPage from '@/pages/PostDetails/PostDetailsPage'
 
-const queryClient = new QueryClient()
+const rootRoute = createRootRoute({
+  component: App,
+})
+
+const postsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: ROUTES.HOME,
+  component: HomePage,
+})
+
+const postRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: ROUTES.POST,
+  component: PostDetailsPage,
+})
+
+const routeTree = rootRoute.addChildren([
+  postsRoute,
+  postRoute
+])
+
+const router = createRouter({
+  routeTree,
+})
+
 
 export default function AppRouter(){
-    return (
-        <QueryClientProvider client={queryClient}>
-            <RouterProvider router={router} />
-        </QueryClientProvider>
-    );
+    return <RouterProvider router={router} />
 }
