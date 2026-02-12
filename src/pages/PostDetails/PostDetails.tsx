@@ -1,6 +1,6 @@
 import { useParams } from '@tanstack/react-router'
-import { usePost } from '@/hooks/usePost'
-import { useComments } from '@/hooks/useComments'
+import { usePost } from '@/api/hooks/usePost'
+import { useComments } from '@/api/hooks/useComments'
 
 export default function PostDetails() {
   const { id } = useParams({ strict: false })

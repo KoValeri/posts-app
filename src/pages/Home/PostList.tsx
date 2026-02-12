@@ -1,4 +1,4 @@
-import { usePosts } from '@/hooks/usePosts'
+import { usePosts } from '@/api/hooks/usePosts'
 import PostCard  from './PostCard'
 import { useState } from 'react'
 import Pagination from '@/components/Pagination/Pagination'
@@ -31,7 +31,7 @@ const PostsList: React.FC = () => {
     )
 
     return (
-      <div className="p-5">
+      <div className="p-6 space-y-6">
         <div>
           {data?.posts.map(post => (
             <PostCard 
