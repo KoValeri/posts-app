@@ -1,4 +1,4 @@
-import { usePosts } from '@/api/hooks/usePosts'
+import { usePosts } from '@/api/posts'
 import PostCard  from './PostCard'
 import { useState } from 'react'
 import Pagination from '@/components/Pagination/Pagination'
@@ -9,8 +9,6 @@ const PostsList: React.FC = () => {
   const [page, setPage] = useState(1)
 
   const { data, isLoading, isError } = usePosts(page, LIMIT)
-
-  const totalPages = Math.ceil((data?.total ?? 0) / LIMIT)
 
   if (isLoading)
     return (
@@ -41,7 +39,7 @@ const PostsList: React.FC = () => {
         </div>
         <Pagination
           currentPage={page}
-          totalPages={totalPages}
+          totalPages={data?.totalPages ?? 0}
           onPageChange={setPage}
         />
       </div>

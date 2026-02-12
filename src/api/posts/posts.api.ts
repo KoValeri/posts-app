@@ -1,5 +1,5 @@
-import  api  from './api-instance'
-import { API_URLS } from './configs/url.config'
+import  api  from '@/api/api-instance'
+import { API_URLS } from './consts'
 import type { Post, PostsParams, PostsResponse } from '@/types/posts.types'
 import type { CommentsResponse } from '@/types/comments.types'
 

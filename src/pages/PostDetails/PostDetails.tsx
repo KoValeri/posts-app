@@ -1,6 +1,6 @@
 import { useParams } from '@tanstack/react-router'
-import { usePost } from '@/api/hooks/usePost'
-import { useComments } from '@/api/hooks/useComments'
+import { usePost } from '@/api/posts'
+import { useComments } from '@/api/posts'
 import { AiOutlineLike } from "react-icons/ai"
 import { AiOutlineDislike } from "react-icons/ai"
 import { FaRegEye } from 'react-icons/fa'
