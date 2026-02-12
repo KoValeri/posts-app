@@ -1,6 +1,9 @@
 import { useParams } from '@tanstack/react-router'
 import { usePost } from '@/api/hooks/usePost'
 import { useComments } from '@/api/hooks/useComments'
+import { AiOutlineLike } from "react-icons/ai"
+import { AiOutlineDislike } from "react-icons/ai"
+import { FaRegEye } from 'react-icons/fa'
 
 export default function PostDetails() {
   const { id } = useParams({ strict: false })
@@ -51,16 +54,16 @@ export default function PostDetails() {
         <div className="flex justify-between items-center pt-3 border-t">
 
           <div className="flex gap-3">
-            <span className="text-sm bg-gray-200 px-3 py-1 rounded-full">
-              👍 {post.reactions.likes}
+            <span className="flex items-center gap-1 text-sm bg-gray-200 px-3 py-1 rounded-full">
+              <AiOutlineLike /> {post.reactions.likes}
             </span>
-            <span className="text-sm bg-gray-200 px-3 py-1 rounded-full">
-              👎 {post.reactions.dislikes}
+            <span className="flex items-center gap-1 text-sm bg-gray-200 px-3 py-1 rounded-full">
+              <AiOutlineDislike /> {post.reactions.dislikes}
             </span>
           </div>
 
-          <span className="text-sm bg-gray-200 px-3 py-1 rounded-full">
-            👁 {post.views}
+          <span className="flex items-center gap-1 text-sm bg-gray-200 px-3 py-1 rounded-full">
+            <FaRegEye /> {post.views}
           </span>
         </div>
       </div>

@@ -1,6 +1,9 @@
 import type { Post } from '@/types/posts.types'
 import { Link } from '@tanstack/react-router'
 import { ROUTES } from '@/configs/routesConfig'
+import { AiOutlineLike } from "react-icons/ai"
+import { AiOutlineDislike } from "react-icons/ai"
+import { FaRegEye } from 'react-icons/fa'
 
 const PostCard: React.FC<Post> = ({ id, title, body, tags, reactions, views }) => {
   return (
@@ -25,16 +28,16 @@ const PostCard: React.FC<Post> = ({ id, title, body, tags, reactions, views }) =
         <div className="flex justify-between items-center pt-2">
 
           <div className="flex gap-2">
-            <span className="text-xs md:text-sm bg-gray-200 px-3 py-1 rounded-full">
-              👍 {reactions.likes}
+            <span className="flex items-center gap-1 text-xs md:text-sm bg-gray-200 px-3 py-1 rounded-full">
+              <AiOutlineLike /> {reactions.likes}
             </span>
-            <span className="text-xs md:text-sm bg-gray-200 px-3 py-1 rounded-full">
-              👎 {reactions.dislikes}
+            <span className="flex items-center gap-1 text-xs md:text-sm bg-gray-200 px-3 py-1 rounded-full">
+              <AiOutlineDislike /> {reactions.dislikes}
             </span>
           </div>
 
-          <span className="text-xs md:text-sm bg-gray-200 px-3 py-1 rounded-full">
-            👁 {views}
+          <span className="flex items-center gap-1 text-xs md:text-sm bg-gray-200 px-3 py-1 rounded-full">
+            <FaRegEye /> {views}
           </span>
         </div>
 
