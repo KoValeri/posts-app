@@ -9,10 +9,17 @@ const rootRoute = createRootRoute({
   component: App,
 })
 
-const postsRoute = createRoute({
+export const postsRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: ROUTES.HOME,
   component: HomePage,
+
+  validateSearch: (search: Record<string, unknown>) => {
+    return {
+      search: typeof search.search === 'string' ? search.search : '',
+      page: Number(search.page) > 0 ? Number(search.page) : 1,
+    }
+  },
 })
 
 const postRoute = createRoute({
@@ -26,7 +33,7 @@ const routeTree = rootRoute.addChildren([
   postRoute
 ])
 
-const router = createRouter({
+export const router = createRouter({
   routeTree,
 })
 

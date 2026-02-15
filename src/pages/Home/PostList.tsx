@@ -1,14 +1,23 @@
 import { usePosts } from '@/api/posts'
 import PostCard  from './PostCard'
-import { useState } from 'react'
+import { postsRoute } from '@/router/AppRouter'
+import { useNavigate } from '@tanstack/react-router'
 import Pagination from '@/components/Pagination/Pagination'
+import { ROUTES } from '@/configs/routesConfig'
 
-const LIMIT = 10
+const LIMIT = 20
 
 const PostsList: React.FC = () => {
-  const [page, setPage] = useState(1)
+  const navigate = useNavigate()
+  const { search = '', page = 1 } = postsRoute.useSearch()
+  const { data, isLoading, isError } = usePosts(page, LIMIT, search)
 
-  const { data, isLoading, isError } = usePosts(page, LIMIT)
+  function handlePageChange(newPage: number) {
+    navigate({
+      to: ROUTES.HOME,
+      search: { search, page: newPage },
+    })
+  }
 
   if (isLoading)
     return (
@@ -40,7 +49,7 @@ const PostsList: React.FC = () => {
         <Pagination
           currentPage={page}
           totalPages={data?.totalPages ?? 0}
-          onPageChange={setPage}
+          onPageChange={handlePageChange}
         />
       </div>
     )

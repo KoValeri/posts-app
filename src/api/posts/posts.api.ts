@@ -4,7 +4,7 @@ import type { Post, PostsParams, PostsResponse } from '@/types/posts.types'
 import type { CommentsResponse } from '@/types/comments.types'
 
 const postsApi = {
-  getPosts: async ({ limit = 10, skip = 0 }: PostsParams): Promise<PostsResponse> => {
+  getPosts: async ({ limit = 20, skip = 0 }: PostsParams): Promise<PostsResponse> => {
     const response = await api.get(API_URLS.POSTS, {
       params: { limit, skip },
     })
