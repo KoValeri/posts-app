@@ -1,6 +1,6 @@
 import PostDetails from '@/pages/PostDetails/PostDetails';
 
-export default function App() {
+export default function PostDetailsPage() {
   return (
       <PostDetails />
   );
