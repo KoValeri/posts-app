@@ -1,15 +1,11 @@
-import { Outlet } from '@tanstack/react-router'
-import Header from '@/components/Header/Header'
-
-import SupportChat from '@/components/Chat/SupportChat'
+import AppRouter from '@/router/AppRouter'
+import QueryProvider from '@/providers/QueryProvider'
+import './index.css'
 
 export default function App() {
   return (
-    <>
-      <Header />
-      <Outlet />
-      <SupportChat />
-    </>
-
+    <QueryProvider>
+      <AppRouter />
+    </QueryProvider>
   );
 }

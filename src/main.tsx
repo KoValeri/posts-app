@@ -1,13 +1,9 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import './index.css'
-import AppRouter from '@/router/AppRouter'
-import QueryProvider from '@/providers/QueryProvider'
+import App from '@/App'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <QueryProvider>
-      <AppRouter />
-    </QueryProvider>
+    <App />
   </StrictMode>,
 )

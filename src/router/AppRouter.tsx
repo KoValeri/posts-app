@@ -1,12 +1,12 @@
 import { RouterProvider } from '@tanstack/react-router'
 import { createRouter, createRootRoute, createRoute } from '@tanstack/react-router'
 import { ROUTES } from '@/configs/routesConfig'
-import App from '@/App'
+import Layout from '@/pages/Layout'
 import HomePage from '@/pages/Home/HomePage'
 import PostDetailsPage from '@/pages/PostDetails/PostDetailsPage'
 
 const rootRoute = createRootRoute({
-  component: App,
+  component: Layout,
 })
 
 export const postsRoute = createRoute({

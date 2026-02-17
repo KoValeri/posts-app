@@ -1,8 +1,11 @@
 import { FaFilter } from "react-icons/fa"
-import type { FilterProps } from './Filter.types'
 import { useNavigate } from '@tanstack/react-router'
 import { postsRoute } from '@/router/AppRouter'
 import { ROUTES } from '@/configs/routesConfig'
+
+export interface FilterProps {
+  tags: string[]
+}
 
 const Filter = ({ tags }: FilterProps) => {
   const navigate = useNavigate()
