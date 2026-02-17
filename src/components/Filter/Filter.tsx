@@ -42,9 +42,9 @@ const Filter = ({ tags }: FilterProps) => {
           "
         >
           <option value="">All Tags</option>
-          {tags.map((t) => (
-            <option key={t} value={t}>
-              {t}
+          {tags.map((tag) => (
+            <option key={tag} value={tag}>
+              {tag}
             </option>
           ))}
         </select>
