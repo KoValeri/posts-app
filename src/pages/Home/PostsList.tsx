@@ -4,18 +4,29 @@ import { postsRoute } from '@/router/AppRouter'
 import { useNavigate } from '@tanstack/react-router'
 import Pagination from '@/components/Pagination/Pagination'
 import { ROUTES } from '@/configs/routesConfig'
+import { useEffect } from 'react'
+import type { PostsListProps } from './PostsList.types'
 
 const LIMIT = 20
 
-const PostsList = () => {
+const PostsList = ({ getTags }: PostsListProps) => {
   const navigate = useNavigate()
-  const { search = '', page = 1 } = postsRoute.useSearch()
-  const { data, isLoading, isError } = usePosts(page, LIMIT, search)
+  const { search = '', page = 1, tag = '' } = postsRoute.useSearch()
+  const { data, isLoading, isError } = usePosts(page, LIMIT, search, tag)
+
+  useEffect(() => {
+    if (!data?.posts) return
+
+    const allTags = data.posts.flatMap(post => post.tags ?? [])
+    const uniqueTags = Array.from(new Set(allTags))
+
+    getTags(uniqueTags)
+  }, [data])
 
   function handlePageChange(newPage: number) {
     navigate({
       to: ROUTES.HOME,
-      search: { search, page: newPage },
+      search: { search, page: newPage, tag },
     })
   }
 

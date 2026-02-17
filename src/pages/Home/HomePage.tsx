@@ -1,7 +1,17 @@
-import PostList from '@/pages/Home/PostList';
+import PostsList from '@/pages/Home/PostsList';
+import Filter from '@/components/Filter/Filter';
+import { useState } from 'react'
 
 export default function HomePage() {
+  const [tags, setTags] = useState<string[]>([])
+
   return (
-      <PostList />
+    <>
+      <Filter 
+        tags={tags}
+      />
+      <PostsList 
+      getTags={setTags}/>
+    </>
   );
 }

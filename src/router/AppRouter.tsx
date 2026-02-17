@@ -18,6 +18,7 @@ export const postsRoute = createRoute({
     return {
       search: typeof search.search === 'string' ? search.search : '',
       page: Number(search.page) > 0 ? Number(search.page) : 1,
+      tag: typeof search.tag === 'string' ? search.tag : '',
     }
   },
 })
