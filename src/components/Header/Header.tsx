@@ -2,7 +2,7 @@ import { Link, useNavigate, useRouter } from '@tanstack/react-router'
 import { ROUTES } from '@/configs/routesConfig'
 import { useState, useEffect } from 'react'
 
-const Header: React.FC = () => {
+const Header = () => {
   const navigate = useNavigate()
   const router = useRouter()
 

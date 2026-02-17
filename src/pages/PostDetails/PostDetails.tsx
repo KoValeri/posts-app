@@ -5,7 +5,7 @@ import { AiOutlineLike } from "react-icons/ai"
 import { AiOutlineDislike } from "react-icons/ai"
 import { FaRegEye } from 'react-icons/fa'
 
-export default function PostDetails() {
+const PostDetails = () => {
   const { id } = useParams({ strict: false })
   const postId = Number(id)
 
@@ -92,3 +92,5 @@ export default function PostDetails() {
     </div>
   )
 }
+
+export default PostDetails

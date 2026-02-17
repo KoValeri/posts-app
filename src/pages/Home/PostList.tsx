@@ -7,7 +7,7 @@ import { ROUTES } from '@/configs/routesConfig'
 
 const LIMIT = 20
 
-const PostsList: React.FC = () => {
+const PostsList = () => {
   const navigate = useNavigate()
   const { search = '', page = 1 } = postsRoute.useSearch()
   const { data, isLoading, isError } = usePosts(page, LIMIT, search)

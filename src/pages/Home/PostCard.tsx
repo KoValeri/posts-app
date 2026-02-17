@@ -5,7 +5,7 @@ import { AiOutlineLike } from "react-icons/ai"
 import { AiOutlineDislike } from "react-icons/ai"
 import { FaRegEye } from 'react-icons/fa'
 
-const PostCard: React.FC<Post> = ({ id, title, body, tags, reactions, views }) => {
+const PostCard = ({ id, title, body, tags, reactions, views }: Post) => {
   return (
     <Link className="p-5" to={ROUTES.POST} params={{ id }}>
       <div className="p-5 border rounded-lg shadow-sm bg-white space-y-3 hover:bg-gray-50 transition-colors cursor-pointer">

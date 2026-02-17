@@ -3,7 +3,7 @@ import { RiCloseLargeLine } from "react-icons/ri"
 import { useState, useRef, useEffect } from 'react'
 import { useChatSocket } from './useChatSocket'
 
-const SupportChat: React.FC = () => {
+const SupportChat = () => {
     const [isOpen, setIsOpen] = useState(false)
     const { messages, sendMessage } = useChatSocket(isOpen)
     const [input, setInput] = useState('')
