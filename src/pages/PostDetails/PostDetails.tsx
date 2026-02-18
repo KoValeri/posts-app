@@ -4,6 +4,7 @@ import { useComments } from '@/api/posts'
 import { AiOutlineLike } from "react-icons/ai"
 import { AiOutlineDislike } from "react-icons/ai"
 import { FaRegEye } from 'react-icons/fa'
+import { IoArrowBack } from "react-icons/io5"
 
 const PostDetails = () => {
   const { id } = useParams({ strict: false })
@@ -30,8 +31,16 @@ const PostDetails = () => {
     )
   }
 
+  function handleBack() {
+    window.history.back()
+  }
+
   return (
     <div className="p-6 space-y-6">
+
+      <button className="flex items-center justify-between w-16 text-xl cursor-pointer" onClick={handleBack}>
+        <IoArrowBack /> Back
+      </button>
 
       <div className="bg-white border rounded-lg shadow-sm p-6 space-y-4">
         <h1 className="text-2xl font-bold">{post.title}</h1>

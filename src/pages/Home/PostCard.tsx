@@ -7,7 +7,11 @@ import { FaRegEye } from 'react-icons/fa'
 
 const PostCard = ({ id, title, body, tags, reactions, views }: Post) => {
   return (
-    <Link className="p-5" to={ROUTES.POST} params={{ id }}>
+    <Link className="p-5" 
+      to={ROUTES.POST} 
+      params={{ id }}
+      >
+      
       <div className="p-5 border rounded-lg shadow-sm bg-white space-y-3 hover:bg-gray-50 transition-colors cursor-pointer">
         
         <h2 className="text-lg md:text-xl lg:text-xl font-bold">{title}</h2>

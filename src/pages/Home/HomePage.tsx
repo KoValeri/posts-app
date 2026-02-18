@@ -5,7 +5,6 @@ import { postsRoute } from '@/router/AppRouter'
 import { useNavigate } from '@tanstack/react-router'
 import { ROUTES } from '@/configs/routesConfig'
 
-
 const LIMIT = 20
 
 export default function HomePage() {
@@ -21,7 +20,7 @@ export default function HomePage() {
         search: { search, page: newPage, tags },
       })
 
-      window.scrollTo({ top: 0 });
+      window.scrollTo({ top: 0});
     }
 
     if (isLoading)

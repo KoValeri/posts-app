@@ -36,6 +36,7 @@ const routeTree = rootRoute.addChildren([
 
 export const router = createRouter({
   routeTree,
+  scrollRestoration: true,
 })
 
 
