@@ -1,17 +1,30 @@
 import { useParams } from '@tanstack/react-router'
 import { usePost } from '@/api/posts'
 import { useComments } from '@/api/posts'
-import { AiOutlineLike } from "react-icons/ai"
-import { AiOutlineDislike } from "react-icons/ai"
+import { AiOutlineLike, AiOutlineDislike, AiFillLike, AiFillDislike } from "react-icons/ai"
 import { FaRegEye } from 'react-icons/fa'
 import { IoArrowBack } from "react-icons/io5"
+import { useSelector, useDispatch } from 'react-redux'
+import type { RootState } from '@/store'
+import { reactionsActions } from '@/store/reactionsSlice'
 
 const PostDetails = () => {
   const { id } = useParams({ strict: false })
   const postId = Number(id)
 
+  const dispatch = useDispatch()
+
   const { data: post, isLoading: postLoading } = usePost(postId)
   const { data: comments, isLoading: commentsLoading } = useComments(postId)
+
+
+  const postReactions = useSelector((state: RootState) => state.reactions[postId])
+
+  const likesCount = postReactions?.likes ?? post?.reactions.likes ?? 0
+  const dislikesCount = postReactions?.dislikes ?? post?.reactions.dislikes ?? 0
+  const isLiked = postReactions?.isLiked ?? false
+  const isDisliked = postReactions?.isDisliked ?? false
+  const postViews = postReactions?.views ?? post?.views ?? 0
 
   if (postLoading || commentsLoading) {
     return (
@@ -63,16 +76,29 @@ const PostDetails = () => {
         <div className="flex justify-between items-center pt-3 border-t">
 
           <div className="flex gap-3">
-            <span className="flex items-center gap-1 text-sm bg-gray-200 px-3 py-1 rounded-full">
-              <AiOutlineLike /> {post.reactions.likes}
-            </span>
-            <span className="flex items-center gap-1 text-sm bg-gray-200 px-3 py-1 rounded-full">
-              <AiOutlineDislike /> {post.reactions.dislikes}
-            </span>
+            <button
+              className="flex items-center gap-1 text-xs md:text-sm bg-gray-200 px-3 py-1 rounded-full cursor-pointer"
+              onClick={(e) => {
+                e.preventDefault()
+                dispatch(reactionsActions.toggleLikes({ postId: id, likes: post.reactions.likes, dislikes: post.reactions.dislikes, views: post.views }))
+              }}
+            >
+              {isLiked ? <AiFillLike /> : <AiOutlineLike />} {likesCount}
+            </button>
+
+            <button
+              onClick={(e) => {
+                e.preventDefault()
+                dispatch(reactionsActions.toggleDislikes({ postId: id, likes: post.reactions.likes, dislikes: post.reactions.dislikes, views: post.views }))
+              }}
+              className="flex items-center gap-1 text-xs md:text-sm bg-gray-200 px-3 py-1 rounded-full cursor-pointer"
+            >
+              {isDisliked ? <AiFillDislike /> : <AiOutlineDislike />} {dislikesCount}
+            </button>
           </div>
 
           <span className="flex items-center gap-1 text-sm bg-gray-200 px-3 py-1 rounded-full">
-            <FaRegEye /> {post.views}
+            <FaRegEye /> {postViews}
           </span>
         </div>
       </div>
