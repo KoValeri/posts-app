@@ -3,12 +3,13 @@ import { QUERY_KEYS } from './consts'
 import postsApi from '@/api/posts/posts.api'
 import type { PostsResponse } from '@/types/posts.types'
 
-export const usePosts = (page: number, limit = 20, search = '', tag: string) => {
+export const usePosts = (page: number, limit = 20, search = '', tags: string[]) => {
   const skip = (page - 1) * limit
 
   return useQuery({
-    queryKey: QUERY_KEYS.POSTS_LIST(page, limit),
+    queryKey: QUERY_KEYS.POSTS_LIST(page, limit, search, tags),
     queryFn: () => postsApi.getPosts({ limit, skip }),
+    placeholderData: (prev) => prev,
 
     select: (data: PostsResponse) => {
       let posts = data.posts ?? []
@@ -19,9 +20,9 @@ export const usePosts = (page: number, limit = 20, search = '', tag: string) => 
         )
       }
 
-      if(tag) {
+      if(tags.length > 0) {
         posts = posts.filter(post =>
-          post.tags.includes(tag)
+          tags.every(tag => post.tags.includes(tag))
         )
       }
 

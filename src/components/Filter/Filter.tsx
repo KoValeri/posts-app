@@ -1,57 +1,62 @@
-import { FaFilter } from "react-icons/fa"
 import { useNavigate } from '@tanstack/react-router'
 import { postsRoute } from '@/router/AppRouter'
 import { ROUTES } from '@/configs/routesConfig'
+import { GoTrash } from "react-icons/go"
 
 export interface FilterProps {
-  tags: string[]
+  filterTags: string[]
 }
 
-const Filter = ({ tags }: FilterProps) => {
+const Filter = ({ filterTags }: FilterProps) => {
   const navigate = useNavigate()
-  const { search = '', page = 1, tag = '' } = postsRoute.useSearch()
+  const { search = '', page = 1, tags = [] } = postsRoute.useSearch() as { search: string, page: number, tags: string[] }
 
-  function handleChange(selectedTag: string) {
-    navigate({
-      to: ROUTES.HOME,
-      search: { search, page, tag: selectedTag },
-    })
+  let newTags: string[]
+
+  function handleChange(selectedTag: string, checked: boolean) {
+      if (checked) {
+        newTags = [...tags, selectedTag]
+      } else {
+        newTags = tags.filter(tag => tag !== selectedTag)
+      }
+
+      navigate({
+        to: ROUTES.HOME,
+        search: { search, page, tags: newTags },
+      })
+  }
+
+  function handleReset() {
+      navigate({
+        to: ROUTES.HOME,
+        search: { search, page, tags: [] },
+      })
   }
 
   return (
-    <form className="flex justify-end items-center mt-6 mr-6 gap-2 text-base md:text-lg lg:text-lg">
-      <div className="relative">
-        <select
-          name="tags"
-          id="tags-select"
-          value={tag}
-          onChange={(e) => handleChange(e.target.value)}
-          className="
-            appearance-none
-            border
-            border-gray-300
-            rounded-lg
-            px-4
-            py-2
-            pr-10
-            text-gray-700
-            hover:border-red-800
-            focus:outline-none
-            focus:ring-2
-            focus:ring-red-800
-            focus:border-red-800
-            transition
-            cursor-pointer
-          "
-        >
-          <option value="">All Tags</option>
-          {tags.map((tag) => (
-            <option key={tag} value={tag}>
-              {tag}
-            </option>
-          ))}
-        </select>
-        <FaFilter className="absolute top-1/2 right-3 -translate-y-1/2 text-gray-500 pointer-events-none" />
+    <form className="p-5">
+      <div className="mb-2 text-lg font-semibold text-gray-700 flex items-center justify-between">
+        <span>Tags</span>
+        <div onClick={handleReset} className={`${tags.length > 0 ? 'flex' : 'hidden'} cursor-pointer text-gray-500 hover:text-red-500`}><GoTrash /></div>
+      </div>
+      <div className="flex flex-col gap-2 max-h-64 overflow-auto">
+        {filterTags?.map((tag) => (
+          <label
+            key={tag}
+            htmlFor={tag}
+            className="flex items-center gap-2 cursor-pointer text-gray-600 hover:text-gray-800"
+          >
+            <input
+              type="checkbox"
+              id={tag}
+              value={tag}
+              checked={tags.includes(tag)}
+              onChange={(e) => handleChange(tag, e.target.checked)}
+              className="w-4 h-4 rounded border-gray-300 text-blue-500 focus:ring-blue-400"
+            />
+            <span>{tag}</span>
+          </label>
+        ))}
       </div>
     </form>
   )

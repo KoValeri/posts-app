@@ -1,8 +1,8 @@
 export const QUERY_KEYS = {
   POSTS: ['posts'] as const,
 
-  POSTS_LIST: (page: number, limit: number) =>
-  [...QUERY_KEYS.POSTS, page, limit] as const,
+  POSTS_LIST: (page: number, limit: number, search: string, tags: string[] ) =>
+  [...QUERY_KEYS.POSTS, page, limit, search, tags] as const,
 
   POST: (id: number) =>
     ['post', id] as const,
