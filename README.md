@@ -33,4 +33,4 @@ cd your-repository
 ```
 
 ## Deploy
-...
+https://zingy-seahorse-f3888c.netlify.app/?search=&page=1&tags=%5B%5D
